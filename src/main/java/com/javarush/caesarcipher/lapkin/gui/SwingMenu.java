@@ -14,7 +14,8 @@ public class SwingMenu extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        ImageIcon icon = new ImageIcon("src/main/java/com/javarush/caesarcipher/lapkin/resources/images/im_pic2.jpg");
+        ImageIcon icon = new ImageIcon(
+                "src/main/java/com/javarush/caesarcipher/lapkin/resources/images/im_pic2.jpg");
         setIconImage(icon.getImage());
 
         JPanel panel = new JPanel();
