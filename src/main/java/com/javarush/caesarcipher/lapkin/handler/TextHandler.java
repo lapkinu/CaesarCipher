@@ -36,14 +36,12 @@ public class TextHandler {
             }
         }
         System.out.println("Decryption key = " + bestKeyShift);
-        long endTime = System.nanoTime();  // Final measurement time method "decryptWithRegex"
+        long endTime = System.nanoTime();
         finalTime = endTime - startTime;
         System.out.println("Elapsed time method \"decryptBruteForceWithRegex\": " + (finalTime) / 1_000_000.0 + " ms");
         return bestMatch != null ? bestMatch : "No match found";
     }
-    public static long getFinalTime() {
-        return finalTime;
-    }
+
     private static String shiftText(String text, int keyShift) {
         StringBuilder result = new StringBuilder();
         for (char character : text.toCharArray()) {
@@ -60,5 +58,8 @@ public class TextHandler {
             }
         }
         return result.toString();
+    }
+    public static long getFinalTime() {
+        return finalTime;
     }
 }

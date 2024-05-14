@@ -43,9 +43,7 @@ public class SwingMenu extends JFrame {
             String outputPath = chooseSaveLocation("Выберите куда сохранить зашифрованный файл", suggestedSaveName);
             int shift = getShift();
             if (outputPath != null && shift != -1) {
-                // Здесь вызов метода для шифрования файла
                 Function.encrypt(inputPath, outputPath, shift);
-
                 JOptionPane.showMessageDialog(this, "Файл зашифрован и сохранен как: " + outputPath);
                 showFileInEditor(outputPath);
             }
@@ -59,9 +57,7 @@ public class SwingMenu extends JFrame {
             String outputPath = chooseSaveLocation("Выберите куда сохранить расшифрованный файл", suggestedSaveName);
             int shift = getShift();
             if (outputPath != null && shift != -1) {
-                // Здесь вызов метода для расшифровки файла
                 Function.decrypt(inputPath, outputPath, shift);
-
                 JOptionPane.showMessageDialog(this, "Файл расшифрован и сохранен как: " + outputPath);
                 showFileInEditor(outputPath);
             }
@@ -98,7 +94,7 @@ public class SwingMenu extends JFrame {
         fileChooser.setDialogTitle(dialogTitle);
         if (defaultPath != null && !defaultPath.isEmpty()) {
             File defaultFile = new File(defaultPath);
-            fileChooser.setSelectedFile(defaultFile);  // Устанавливаем предлагаемый файл
+            fileChooser.setSelectedFile(defaultFile);
         }
         int result = fileChooser.showSaveDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
