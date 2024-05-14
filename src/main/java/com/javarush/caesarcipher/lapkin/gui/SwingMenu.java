@@ -15,12 +15,11 @@ public class SwingMenu extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         ImageIcon icon = new ImageIcon(
-                "src/main/java/com/javarush/caesarcipher/lapkin/resources/images/im_pic2.jpg");
+                "src/main/resources/images/im_pic2.jpg");
         setIconImage(icon.getImage());
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4, 1, 10, 10));
-
         JButton encryptButton = new JButton(ENCRYPT_FILE_BUTTON);
         JButton decryptButton = new JButton(DECRYPT_FILE_BUTTON);
         JButton bruteForceButton = new JButton(DECRYPTION_BRUTE_FORCE_BUTTON);
@@ -77,7 +76,8 @@ public class SwingMenu extends JFrame {
                 // Здесь вызов метода brute force расшифровки
                 Function.decryptBruteForce(inputPath, outputPath, REGULAR_EXPRESSION);
                 JOptionPane.showMessageDialog(this, FILE_IS_BRUTE_FORCE_DECRYPTION_AND_SAVED_AS + "\n"
-                        + outputPath + "\n \n" + FILE_PROCESSING_TIME + (TextHandler.getFinalTime()) / 1_000_000.0 + SI_UNIT_MS);
+                        + outputPath + "\n "   +  FOND_KEY +  TextHandler.getFoundKey()    +
+                        "\n" + FILE_PROCESSING_TIME + (TextHandler.getFinalTime()) / 1_000_000.0 + SI_UNIT_MS);
                 showFileInEditor(outputPath);
             }
         }

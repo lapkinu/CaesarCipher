@@ -9,5 +9,4 @@ public class Alphabet {
     public static final int CYRILLIC_YO_LOW_CASE = 'ё';    // = 1105
     public static final int ASCII_RANGE = 95;
     public static final int CYRILLIC_RANGE = 64;
-
 }

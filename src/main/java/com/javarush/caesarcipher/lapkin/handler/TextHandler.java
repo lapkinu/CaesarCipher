@@ -6,10 +6,8 @@ import java.util.regex.Pattern;
 import static com.javarush.caesarcipher.lapkin.constans.Alphabet.*;
 
 public class TextHandler {
-
-
     private static long finalTime;
-
+    private static int foundKey;
     public static String encryptByKey(String text, int keyShift) {
         return shiftText(text, keyShift);
     }
@@ -17,12 +15,12 @@ public class TextHandler {
         return shiftText(text, -keyShift);
     }
     public static String decryptBruteForceWithRegex(String text, String regex) {
-        long startTime = System.nanoTime();  // Initial measurement time method "decryptWithRegex"
+        long startTime = System.nanoTime();
         int maxKeyRange = CYRILLIC_RANGE/2;
         Pattern pattern = Pattern.compile(regex);
         String bestMatch = null;
         int highestMatchLength = 0;
-        int bestKeyShift = 0;
+        foundKey = 0;
         for (int keyShift = 0; keyShift < maxKeyRange; keyShift++) {
             String decryptedText = decryptByKey(text, keyShift);
             Matcher matcher = pattern.matcher(decryptedText);
@@ -31,17 +29,16 @@ public class TextHandler {
                 if (match.length() > highestMatchLength) {
                     highestMatchLength = match.length();
                     bestMatch = decryptedText;
-                    bestKeyShift = keyShift;
+                    foundKey = keyShift;
                 }
             }
         }
-        System.out.println("Decryption key = " + bestKeyShift);
+        System.out.println("Decryption key = " + foundKey);
         long endTime = System.nanoTime();
         finalTime = endTime - startTime;
         System.out.println("Elapsed time method \"decryptBruteForceWithRegex\": " + (finalTime) / 1_000_000.0 + " ms");
         return bestMatch != null ? bestMatch : "No match found";
     }
-
     private static String shiftText(String text, int keyShift) {
         StringBuilder result = new StringBuilder();
         for (char character : text.toCharArray()) {
@@ -61,5 +58,8 @@ public class TextHandler {
     }
     public static long getFinalTime() {
         return finalTime;
+    }
+    public static long getFoundKey() {
+        return foundKey ;
     }
 }
