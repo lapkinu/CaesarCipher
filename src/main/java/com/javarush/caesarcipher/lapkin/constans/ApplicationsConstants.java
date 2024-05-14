@@ -24,4 +24,8 @@ public class ApplicationsConstants {
     public  static final String POSTFIX_BRUTE_FORCE_DECRYPTION_FILE_NAME = "_brute-force-decrypted.txt";
     public  static final String ERROR_ENTER_AN_INTEGER = "Ошибка: необходимо ввести целое число.";
     public  static final String FILE_OPENING_ERROR = "Не удалось открыть файл: ";
+    public  static final String FILE_PROCESSING_TIME = "                   Время обработки файла: ";
+    public  static final String SI_UNIT_MS = " мс";
+
+
 }

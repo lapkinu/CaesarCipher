@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class SwingMenu extends JFrame {
     public SwingMenu() {
-        setTitle("Шифровальщик");
+        setTitle(APP_NAME);
         setSize(400, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -17,10 +17,10 @@ public class SwingMenu extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4, 1, 10, 10));
 
-        JButton encryptButton = new JButton("Шифровать файл");
-        JButton decryptButton = new JButton("Расшифровать файл");
-        JButton bruteForceButton = new JButton("Brute force расшифровка");
-        JButton exitButton = new JButton("Выход");
+        JButton encryptButton = new JButton(ENCRYPT_FILE_BUTTON);
+        JButton decryptButton = new JButton(DECRYPT_FILE_BUTTON);
+        JButton bruteForceButton = new JButton(DECRYPTION_BRUTE_FORCE_BUTTON);
+        JButton exitButton = new JButton(EXIT_BUTTON);
 
         encryptButton.addActionListener(e -> encryptFile());
         decryptButton.addActionListener(e -> decryptFile());
@@ -37,43 +37,43 @@ public class SwingMenu extends JFrame {
     }
 
     private void encryptFile() {
-        String inputPath = chooseFile("Выберите файл для шифрования");
+        String inputPath = chooseFile(SELECT_A_FILE_TO_ENCRYPT);
         if (inputPath != null) {
-            String suggestedSaveName = inputPath.replaceAll("\\.txt$", "_encrypted.txt");
-            String outputPath = chooseSaveLocation("Выберите куда сохранить зашифрованный файл", suggestedSaveName);
+            String suggestedSaveName = inputPath.replaceAll("\\.txt$", POSTFIX_ENCRYPTION_FILE_NAME);
+            String outputPath = chooseSaveLocation(SELECT_DIRECTORY_FOR_ENCRYPTED_FILE, suggestedSaveName);
             int shift = getShift();
             if (outputPath != null && shift != -1) {
                 Function.encrypt(inputPath, outputPath, shift);
-                JOptionPane.showMessageDialog(this, "Файл зашифрован и сохранен как: " + outputPath);
+                JOptionPane.showMessageDialog(this, FILE_IS_ENCRYPTED_AND_SAVED_AS + outputPath);
                 showFileInEditor(outputPath);
             }
         }
     }
 
     private void decryptFile() {
-        String inputPath = chooseFile("Выберите файл для расшифровки");
+        String inputPath = chooseFile(SELECT_FILE_TO_DECRYPT);
         if (inputPath != null) {
-            String suggestedSaveName = inputPath.replaceAll("\\.txt$", "_decrypted.txt");
-            String outputPath = chooseSaveLocation("Выберите куда сохранить расшифрованный файл", suggestedSaveName);
+            String suggestedSaveName = inputPath.replaceAll("\\.txt$", POSTFIX_DECRYPTION_FILE_NAME);
+            String outputPath = chooseSaveLocation(SELECT_DIRECTORY_FOR_DECRYPTION_FILE, suggestedSaveName);
             int shift = getShift();
             if (outputPath != null && shift != -1) {
                 Function.decrypt(inputPath, outputPath, shift);
-                JOptionPane.showMessageDialog(this, "Файл расшифрован и сохранен как: " + outputPath);
+                JOptionPane.showMessageDialog(this, FILE_IS_DECRYPTION_AND_SAVED_AS + outputPath);
                 showFileInEditor(outputPath);
             }
         }
     }
 
     private void decryptBruteForce() {
-        String inputPath = chooseFile("Выберите файл для brute force расшифровки");
+        String inputPath = chooseFile(SELECT_FILE_TO_BRUTE_FORCE_DECRYPTION);
         if (inputPath != null) {
-            String suggestedSaveName = inputPath.replaceAll("\\.txt$", "_bruteforced.txt");
-            String outputPath = chooseSaveLocation("Выберите куда сохранить результат brute force", suggestedSaveName);
+            String suggestedSaveName = inputPath.replaceAll("\\.txt$", POSTFIX_BRUTE_FORCE_DECRYPTION_FILE_NAME);
+            String outputPath = chooseSaveLocation(SELECT_DIRECTORY_FOR_BRUTE_FORCE_DECRYPTION_FILE, suggestedSaveName);
             if (outputPath != null) {
                 // Здесь вызов метода brute force расшифровки
                 Function.decryptBruteForce(inputPath, outputPath, REGULAR_EXPRESSION);
-                JOptionPane.showMessageDialog(this, "Brute force расшифровка выполнена и результат сохранен как:" + "\n"
-                        + outputPath + "\n \n" + "                   Время обрабртки файла: " + (TextHandler.getFinalTime()) / 1_000_000.0 + " ms");
+                JOptionPane.showMessageDialog(this, FILE_IS_BRUTE_FORCE_DECRYPTION_AND_SAVED_AS + "\n"
+                        + outputPath + "\n \n" + FILE_PROCESSING_TIME + (TextHandler.getFinalTime()) / 1_000_000.0 + SI_UNIT_MS);
                 showFileInEditor(outputPath);
             }
         }
@@ -104,22 +104,22 @@ public class SwingMenu extends JFrame {
     }
 
     private int getShift() {
-        String shiftString = JOptionPane.showInputDialog(this, "Введите сдвиг для шифрования/расшифровки:");
+        String shiftString = JOptionPane.showInputDialog(this, SELECT_SHIFT_KEY);
         try {
             return Integer.parseInt(shiftString);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ошибка: необходимо ввести целое число.");
+            JOptionPane.showMessageDialog(this, ERROR_ENTER_AN_INTEGER);
             return -1;
         }
     }
 
     private void showFileInEditor(String filePath) {
-        int response = JOptionPane.showConfirmDialog(this, "Хотите открыть файл?", "Открытие файла", JOptionPane.YES_NO_OPTION);
+        int response = JOptionPane.showConfirmDialog(this, WANT_TO_OPEN_A_FILE, OPENING_A_FILE, JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             try {
                 Desktop.getDesktop().open(new File(filePath));
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Не удалось открыть файл: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, FILE_OPENING_ERROR + e.getMessage());
             }
         }
     }
