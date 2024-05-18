@@ -2,7 +2,7 @@ package com.javarush.caesarcipher.lapkin.constans;
 
 public class ApplicationsConstants {
     public  static final String REGULAR_EXPRESSION = "[\\w\\s]+";
-    public  static final String APP_NAME = "Шифр Цезаря";
+    public  static final String APP_NAME = "Шифр Цезаря V 1.2";
     public  static final String ENCRYPT_FILE_BUTTON = "Шифровать файл";
     public  static final String DECRYPT_FILE_BUTTON = "Расшифровать файл";
     public  static final String DECRYPTION_BRUTE_FORCE_BUTTON = "Brute force расшифровка";
