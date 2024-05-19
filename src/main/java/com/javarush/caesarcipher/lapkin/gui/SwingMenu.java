@@ -38,7 +38,6 @@ public class SwingMenu extends JFrame {
         add(panel);
         setVisible(true);
     }
-
     private void encryptFile() {
         String inputPath = chooseFile(SELECT_A_FILE_TO_ENCRYPT);
         if (inputPath != null) {
@@ -52,7 +51,6 @@ public class SwingMenu extends JFrame {
             }
         }
     }
-
     private void decryptFile() {
         String inputPath = chooseFile(SELECT_FILE_TO_DECRYPT);
         if (inputPath != null) {
@@ -66,7 +64,6 @@ public class SwingMenu extends JFrame {
             }
         }
     }
-
     private void decryptBruteForce() {
         String inputPath = chooseFile(SELECT_FILE_TO_BRUTE_FORCE_DECRYPTION);
         if (inputPath != null) {
@@ -82,7 +79,6 @@ public class SwingMenu extends JFrame {
             }
         }
     }
-
     private String chooseFile(String dialogTitle) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(dialogTitle);
@@ -92,7 +88,6 @@ public class SwingMenu extends JFrame {
         }
         return null;
     }
-
     private String chooseSaveLocation(String dialogTitle, String defaultPath) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(dialogTitle);
@@ -106,7 +101,6 @@ public class SwingMenu extends JFrame {
         }
         return null;
     }
-
     private int getShift() {
         String shiftString = JOptionPane.showInputDialog(this, SELECT_SHIFT_KEY);
         try {
@@ -116,7 +110,6 @@ public class SwingMenu extends JFrame {
             return -1;
         }
     }
-
     private void showFileInEditor(String filePath) {
         int response = JOptionPane.showConfirmDialog(this, WANT_TO_OPEN_A_FILE, OPENING_A_FILE, JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
