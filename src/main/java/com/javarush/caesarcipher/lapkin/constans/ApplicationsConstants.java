@@ -2,7 +2,7 @@ package com.javarush.caesarcipher.lapkin.constans;
 
 public class ApplicationsConstants {
     public  static final String REGULAR_EXPRESSION = "[\\w\\s]+";
-    public  static final String APP_NAME = "Шифр Цезаря V 1.2";
+    public  static final String APP_NAME = "Шифр Цезаря  V2.0";
     public  static final String ENCRYPT_FILE_BUTTON = "Шифровать файл";
     public  static final String DECRYPT_FILE_BUTTON = "Расшифровать файл";
     public  static final String DECRYPTION_BRUTE_FORCE_BUTTON = "Brute force расшифровка";
@@ -24,7 +24,9 @@ public class ApplicationsConstants {
     public  static final String POSTFIX_BRUTE_FORCE_DECRYPTION_FILE_NAME = "_brute-force_decrypted.txt";
     public  static final String ERROR_ENTER_AN_INTEGER = "Ошибка: необходимо ввести целое число.";
     public  static final String FILE_OPENING_ERROR = "Не удалось открыть файл: ";
-    public  static final String FILE_PROCESSING_TIME = "                Время обработки файла: ";
+    public  static final String FILE_PROCESSING_TIME = "                                Время обработки файла: ";
     public  static final String SI_UNIT_MS = " мс";
     public  static final String FOND_KEY = "                                         Ключ: ";
+    public  static final String SELECT_CHAR = "Введите заменяемый символ \n или для выхода введите 0  (\"ноль\")";
+    public  static final String POSTFIX_CRYPT_ANALYZER_DECRYPTION_FILE_NAME = "_crypt-analyzer_decryption.txt";
 }
