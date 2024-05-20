@@ -100,16 +100,18 @@ public class SwingMenu extends JFrame {
                 showFileInEditor(outputPath);
                 try {
                     while (true) {
-                        char fromChar = (char) getChar();
-                        if (fromChar == '0') {
+                       int fromChar =  getCharFrom();
+                        if (fromChar == -1) {
                             break;
                         }
-                        char toChar = (char) getChar();
-                        if (toChar == '0') {
+                        int toChar =  getCharTo();
+                        if ( toChar == -1 ) {
                             break;
                         }
+                        char chFrom = (char) fromChar;
+                        char chTo = (char) toChar;
                         String encryptedText = FileHandler.readFile(outputPath);
-                        String newReplaced = replaceCharsInText(encryptedText, fromChar, toChar);
+                        String newReplaced = replaceCharsInText(encryptedText, chFrom, chTo);
                         FileHandler.writeFile(outputPath, newReplaced);
                         showFileInEditor(outputPath);
                     }
@@ -150,15 +152,32 @@ public class SwingMenu extends JFrame {
             return -1;
         }
     }
-    private int getChar() {
-        String ch = JOptionPane.showInputDialog(this, SELECT_CHAR);
+    private int getCharFrom() {
+        String ch = JOptionPane.showInputDialog(this, SELECT_CHAR_A);
         try {
-            return  ch.charAt(0);
+            if (ch != null) {
+                return ch.charAt(0);
+            }
+            return -1;
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, ERROR_ENTER_AN_INTEGER);
             return -1;
         }
     }
+
+    private int getCharTo() {
+        String ch = JOptionPane.showInputDialog(this, SELECT_CHAR_B);
+        try {
+            if (ch != null) {
+                return ch.charAt(0);
+            }
+            return -1;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, ERROR_ENTER_AN_INTEGER);
+            return -1;
+        }
+    }
+
     private void showFileInEditor(String filePath) {
         int response = JOptionPane.showConfirmDialog(this, WANT_TO_OPEN_A_FILE, OPENING_A_FILE, JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {

@@ -27,6 +27,7 @@ public class ApplicationsConstants {
     public  static final String FILE_PROCESSING_TIME = "                                Время обработки файла: ";
     public  static final String SI_UNIT_MS = " мс";
     public  static final String FOND_KEY = "                                         Ключ: ";
-    public  static final String SELECT_CHAR = "Введите заменяемый символ \n или для выхода введите 0  (\"ноль\")";
+    public  static final String SELECT_CHAR_A = "Введите символ который необходимо заменить";
+    public  static final String SELECT_CHAR_B = "Введите символ на который нужно заменить";
     public  static final String POSTFIX_CRYPT_ANALYZER_DECRYPTION_FILE_NAME = "_crypt-analyzer_decryption.txt";
 }
